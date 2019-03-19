@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: 'DB_Project_1'
+    restart: on-failure
+    image: postgres:11
+    volumes:
+#      - /usr/local/bin/pg_config:/home/project/postgresql
+      - ./postgres/pgdata:/home/project/postgresql/data
+#    command: postgres -c config_file=/home/project/postgresql/pg.conf
+#    env_file:
+#      - ./main.properties
+  redis:
+    container_name: 'RD_Project_1'
+    restart: on-failure
+    image: redis:5
+#    env_file:
+#      - ./main.properties
+  main:
+    container_name: 'Project_1'
+    restart: on-failure
+    build: Project_1
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./Project_1:/home/project
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+
