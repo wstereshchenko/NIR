@@ -26,8 +26,6 @@ SECRET_KEY = '(=#ej0np-=p!0q75dln3qkvxlk%w(9!@usko(xdfaf40ay652$'
 DEBUG = True
 
 
-BROKER_URL = "amqp://admin:mypass@localhost/"
-
 ALLOWED_HOSTS = []
 
 
@@ -90,6 +88,19 @@ DATABASES = {
         'PASSWORD': ''
     }
 }
+
+RABBITMQ_PORT = os.environ.get('RABBITMQ_PORT', '5672')
+RABBITMQ_USER = os.environ.get('RABBITMQ_DEFAULT_USER', 'admin')
+RABBITMQ_PASS = os.environ.get('RABBITMQ_DEFAULT_PASS', '123')
+RABBITMQ_HOST = os.environ.get('RABBITMQ_HOST', 'rabbitmq')
+RABBITMQ_VHOST = os.environ.get('RABBITMQ_VHOST', '')
+
+BROKER_URL = 'amqp://{user}:{password}@{hostname}/{vhost}/'.format(
+    user=RABBITMQ_USER,
+    password=RABBITMQ_PASS,
+    hostname=RABBITMQ_HOST,
+    vhost=RABBITMQ_VHOST,
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
