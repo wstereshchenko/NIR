@@ -25,6 +25,9 @@ SECRET_KEY = '(=#ej0np-=p!0q75dln3qkvxlk%w(9!@usko(xdfaf40ay652$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+BROKER_URL = "amqp://admin:mypass@localhost/"
+
 ALLOWED_HOSTS = []
 
 
@@ -84,8 +87,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'HOST': 'db',
-        'PASSWORD': '',
-        'PORT': 5432
+        'PASSWORD': ''
     }
 }
 
