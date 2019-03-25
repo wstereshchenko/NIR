@@ -11,17 +11,35 @@ services:
 #    command: postgres -c config_file=/home/project/postgresql/pg.conf
 #    env_file:
 #      - ./main.properties
+  rabbitmq:
+    container_name: 'RBMQ_Project_1'
+    restart: on-failure
+    image: rabbitmq:3
+    env_file:
+      - ./main.properties
   redis:
     container_name: 'RD_Project_1'
     restart: on-failure
     image: redis:5
 #    env_file:
 #      - ./main.properties
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: 123
+      RABBITMQ_HOST: rabbitmq
+#  tasks:
+#    build: .
+#    container_name: celery_tasks
+#    environment:
+#      RABBITMQ_HOST: rabbitmq
   main:
     container_name: 'Project_1'
     restart: on-failure
     build: Project_1
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./Project_1:/home/project
     ports:
@@ -29,4 +47,5 @@ services:
     depends_on:
       - db
       - redis
+      - rabbitmq
 
