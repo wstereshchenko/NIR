@@ -2,6 +2,7 @@ from django.http import JsonResponse
 import requests
 
 from Project_1 import vrb
+from .tasks import aaa
 from .models import OwmWeather
 
 
@@ -30,5 +31,5 @@ def current_temp(request):
     #                  wind_speed=response['wind']['speed'],
     #                  wind_deg=response['wind']['deg'])
     # ans.save()
-
+    # aaa.delay()
     return JsonResponse({'msg': 'ok'}, status=200)

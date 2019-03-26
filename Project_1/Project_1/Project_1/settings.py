@@ -85,14 +85,36 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'HOST': 'db',
-        'PORT': '5432',
+        'PORT': 5432,
         'PASSWORD': ''
     }
 }
 
-BROKER_URL = 'amqp://user:user@rabbit:5672//'
-CELERY_BROKER_URL = 'amqp://user:user@rabbit:5672//'
+# RabbitMQ
+RABBITMQ_HOST = os.environ.get('RABBITMQ_HOST', 'rabbitmq')
+RABBITMQ_PORT = os.environ.get('RABBITMQ_PORT', '5672')
+RABBITMQ_USER = os.environ.get('RABBITMQ_DEFAULT_USER', 'user')
+RABBITMQ_PASS = os.environ.get('RABBITMQ_DEFAULT_PASS', 'user')
+RABBITMQ_VHOST = os.environ.get('RABBITMQ_VHOST', '')
 
+BROKER_URL = 'amqp://{user}:{password}@{hostname}:{port}/{vhost}/'.format(
+    user=RABBITMQ_USER,
+    password=RABBITMQ_PASS,
+    hostname=RABBITMQ_HOST,
+    port=RABBITMQ_PORT,
+    vhost=RABBITMQ_VHOST
+)
+
+# Celery
+RABBITMQ_USER = os.environ.get('RABBITMQ_DEFAULT_USER', 'user')
+RABBITMQ_PASS = os.environ.get('RABBITMQ_DEFAULT_PASS', 'user')
+RABBITMQ_HOST = os.environ.get('RABBITMQ_HOST', 'rabbitmq')
+
+CELERY_BROKER_URL = 'amqp://{user}:{password}@{hostname}:5672//'.format(
+    user=RABBITMQ_USER,
+    password=RABBITMQ_PASS,
+    hostname=RABBITMQ_HOST
+)
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
