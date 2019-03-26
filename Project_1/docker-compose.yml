@@ -7,10 +7,12 @@ services:
     image: postgres:11
     volumes:
       - ./postgres/pg.conf:/home/project/postgresql.conf
-      - ./postgres/pgdata:/home/project/postgresql/data
-    command: postgres -c config_file=/etc/postgresql.conf
+      - ./postgres/pgdata/:/home/project/postgresql/data/
+    command: postgres -c config_file=/home/project/postgresql.conf
     env_file:
       - ./main.properties
+    ports:
+      - "5432:5432"
   rabbitmq:
     container_name: 'RBMQ_Project_1'
     restart: on-failure
@@ -33,6 +35,8 @@ services:
     command: ./run-server.sh
     volumes:
       - ./Project_1:/home/project
+    env_file:
+      - ./main.properties
     ports:
       - "8000:8000"
     depends_on:

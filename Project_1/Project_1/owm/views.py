@@ -20,5 +20,5 @@ def current_temp(request):
     # print("wind_deg: {}".format(response['wind']['deg']))
     # print("date_time: {}".format(response['dt'])
 
-    owm_save_to_base.delay()
-    return JsonResponse({'msg': 'ok'}, status=200)
+    ok = owm_save_to_base.delay()
+    return JsonResponse({'msg': str(ok)}, status=200)
