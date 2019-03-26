@@ -147,8 +147,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Variable
+OWP_appid = '6701628c6e670a9fa0d12355d365e57f'
+OWP_id_city = '484907'
+OWP_units = 'metric'

@@ -28,7 +28,7 @@ services:
     container_name: 'Project_1'
     restart: on-failure
     build: Project_1
-    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: ./run-server.sh
     volumes:
       - ./Project_1:/home/project
     ports:
@@ -37,4 +37,3 @@ services:
       - db
       - redis
       - rabbitmq
-

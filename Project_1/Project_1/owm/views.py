@@ -1,14 +1,13 @@
 from django.http import JsonResponse
 import requests
 
-from Project_1 import vrb
-from .tasks import aaa
-from .models import OwmWeather
+from Project_1.settings import *
+from .tasks import owm_save_to_base
 
 
 def current_temp(request):
     response = requests.get('https://api.openweathermap.org/data/2.5/weather?id={}&mode=json&units={}&appid={}'
-                            .format(vrb.OWP_id_city, vrb.OWP_units, vrb.OWP_appid)).json()
+                            .format(OWP_id_city, OWP_units, OWP_appid)).json()
 
     # print("id_city: {}".format(response['id']))
     # print("name_city: {}".format(response['name']))
@@ -21,15 +20,5 @@ def current_temp(request):
     # print("wind_deg: {}".format(response['wind']['deg']))
     # print("date_time: {}".format(response['dt'])
 
-    # ans = OwmWeather(id_city=response['id'],
-    #                  name_city=response['name'],
-    #                  lon=response['coord']['lon'],
-    #                  lat=response['coord']['lat'],
-    #                  temp=response['main']['temp'],
-    #                  pressure=response['main']['pressure'],
-    #                  humidity=response['main']['humidity'],
-    #                  wind_speed=response['wind']['speed'],
-    #                  wind_deg=response['wind']['deg'])
-    # ans.save()
-    # aaa.delay()
+    owm_save_to_base.delay()
     return JsonResponse({'msg': 'ok'}, status=200)
