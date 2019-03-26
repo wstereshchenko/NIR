@@ -2,4 +2,4 @@
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
-celery -A mysite worker -l info
+celery -A Project_1 worker -l info

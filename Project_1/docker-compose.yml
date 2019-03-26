@@ -6,7 +6,9 @@ services:
     restart: on-failure
     image: postgres:11
     volumes:
+      - ./postgres/pg.conf:/home/project/postgresql.conf
       - ./postgres/pgdata:/home/project/postgresql/data
+    command: postgres -c config_file=/etc/postgresql.conf
     env_file:
       - ./main.properties
   rabbitmq:

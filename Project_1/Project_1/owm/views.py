@@ -2,7 +2,7 @@ from django.http import JsonResponse
 import requests
 
 from Project_1.settings import *
-from .tasks import owm_save_to_base
+from owm.tasks import owm_save_to_base
 
 
 def current_temp(request):

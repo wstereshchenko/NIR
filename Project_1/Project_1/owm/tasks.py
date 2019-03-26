@@ -2,7 +2,7 @@ from celery import shared_task
 import requests
 
 from Project_1.settings import *
-from .models import OwmWeather
+from owm.models import OwmWeather
 
 
 @shared_task
