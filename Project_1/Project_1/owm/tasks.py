@@ -5,7 +5,7 @@ from Project_1.settings import *
 from owm.models import OwmWeather
 
 
-@shared_task
+@shared_task()
 def owm_save_to_base():
     response = requests.get('https://api.openweathermap.org/data/2.5/weather?id={}&mode=json&units={}&appid={}'
                             .format(OWP_id_city, OWP_units, OWP_appid)).json()
@@ -19,4 +19,5 @@ def owm_save_to_base():
                      wind_speed=response['wind']['speed'],
                      wind_deg=response['wind']['deg'])
     ans.save()
+    print('hello!!!')
     return 0

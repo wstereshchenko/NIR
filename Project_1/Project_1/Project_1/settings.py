@@ -105,6 +105,12 @@ BROKER_URL = 'amqp://{user}:{password}@{hostname}:{port}/{vhost}/'.format(
     vhost=RABBITMQ_VHOST
 )
 
+CELERY_BROKER_URL = 'amqp://{user}:{password}@{hostname}:5672'.format(
+    user=RABBITMQ_USER,
+    password=RABBITMQ_PASS,
+    hostname=RABBITMQ_HOST
+)
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 

@@ -9,7 +9,7 @@ AMQP_PARAMETERS = pika.ConnectionParameters(host=os.getenv('RABBITMQ_HOST', 'rab
                                             port=int(os.getenv('RABBITMQ_PORT', 5672)),
                                             virtual_host=os.getenv('RABBITMQ_DEFAULT_VHOST', '/'),
                                             credentials=AMQP_CREDENTIALS)
-
+time.sleep(15)
 # wait while RABBITMQ is not ready
 while True:
     try:

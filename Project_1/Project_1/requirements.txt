@@ -5,7 +5,6 @@ celery==4.2.2
 certifi==2019.3.9
 cffi==1.12.2
 chardet==3.0.4
-crontab==0.22.5
 Django==2.1.7
 django-redis==4.10.0
 djangorestframework==3.9.2
