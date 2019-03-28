@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djcelery',
 
     'rest_framework',
 
@@ -75,6 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Project_1.wsgi.application'
 
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -90,6 +92,7 @@ DATABASES = {
     }
 }
 
+
 # RabbitMQ
 RABBITMQ_HOST = os.environ.get('RABBITMQ_HOST', 'rabbitmq')
 RABBITMQ_PORT = os.environ.get('RABBITMQ_PORT', '5672')
@@ -103,12 +106,6 @@ BROKER_URL = 'amqp://{user}:{password}@{hostname}:{port}/{vhost}/'.format(
     hostname=RABBITMQ_HOST,
     port=RABBITMQ_PORT,
     vhost=RABBITMQ_VHOST
-)
-
-CELERY_BROKER_URL = 'amqp://{user}:{password}@{hostname}:5672'.format(
-    user=RABBITMQ_USER,
-    password=RABBITMQ_PASS,
-    hostname=RABBITMQ_HOST
 )
 
 # Password validation
