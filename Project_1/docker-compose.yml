@@ -6,20 +6,17 @@ services:
     restart: on-failure
     image: postgres:11
     volumes:
-      - ./postgres/pg.conf:/home/project/postgresql.conf
+#      - ./postgres/pg.conf:/home/project/postgresql.conf
       - ./postgres/pgdata/:/home/project/postgresql/data/
-    command: postgres -c config_file=/home/project/postgresql.conf
+#    command: postgres -c config_file=/home/project/postgresql.conf
     env_file:
       - ./main.properties
-    ports:
-      - "5432:5432"
   rabbitmq:
     container_name: 'RBMQ_Project_1'
     restart: on-failure
-    hostname: rabbit
     image: rabbitmq:3
-    ports:
-      - "5672:5672"
+#    ports:
+#      - "5672:5672"
     env_file:
       - ./main.properties
   redis:
@@ -43,3 +40,17 @@ services:
       - db
       - redis
       - rabbitmq
+  celery:
+    container_name: 'Cel_Project_1'
+    restart: on-failure
+    build: Project_1
+    command: ./start-celery.sh
+    volumes:
+      - ./Project_1:/home/project
+    env_file:
+      - ./main.properties
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - main
