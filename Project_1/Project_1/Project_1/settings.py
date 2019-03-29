@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djcelery',
 
     'rest_framework',
 
@@ -75,8 +74,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Project_1.wsgi.application'
-
-CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
