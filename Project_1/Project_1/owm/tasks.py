@@ -1,11 +1,12 @@
-from celery import shared_task
+from __future__ import absolute_import, unicode_literals
+from celery import shared_task, task
 import requests
 
 from Project_1.settings import *
 from owm.models import OwmWeather
 
 
-@shared_task
+@task()
 def owm_save_to_base():
     response = requests.get('https://api.openweathermap.org/data/2.5/weather?id={}&mode=json&units={}&appid={}'
                             .format(OWP_id_city, OWP_units, OWP_appid)).json()

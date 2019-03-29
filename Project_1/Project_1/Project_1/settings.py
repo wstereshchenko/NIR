@@ -97,7 +97,7 @@ RABBITMQ_USER = os.environ.get('RABBITMQ_DEFAULT_USER', 'user')
 RABBITMQ_PASS = os.environ.get('RABBITMQ_DEFAULT_PASS', 'user')
 RABBITMQ_VHOST = os.environ.get('RABBITMQ_VHOST', '')
 
-BROKER_URL = 'amqp://{user}:{password}@{hostname}:{port}/{vhost}/'.format(
+CELERY_BROKER_URL = 'amqp://{user}:{password}@{hostname}:{port}/{vhost}/'.format(
     user=RABBITMQ_USER,
     password=RABBITMQ_PASS,
     hostname=RABBITMQ_HOST,
