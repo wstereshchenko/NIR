@@ -10,6 +10,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'owm': {
         'task': 'owm.tasks.owm_save_to_base',
-        'schedule': crontab('*')
+        'schedule': crontab(minute=[0, 15, 30, 45])
     }
 }

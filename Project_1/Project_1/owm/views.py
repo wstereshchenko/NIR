@@ -2,7 +2,6 @@ from django.http import JsonResponse
 import requests
 
 from Project_1.settings import *
-from owm.tasks import owm_save_to_base
 
 
 def current_temp(request):
@@ -19,6 +18,5 @@ def current_temp(request):
     # print("wind_speed: {}".format(response['wind']['speed']))
     # print("wind_deg: {}".format(response['wind']['deg']))
     # print("date_time: {}".format(response['dt'])
-    owm_save_to_base.delay()
 
     return JsonResponse({'msg': 'ok'}, status=200)

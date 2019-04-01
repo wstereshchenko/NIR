@@ -19,5 +19,4 @@ def owm_save_to_base():
                      wind_speed=response['wind']['speed'],
                      wind_deg=response['wind']['deg'])
     ans.save()
-    print('hello!!!')
     return 0
