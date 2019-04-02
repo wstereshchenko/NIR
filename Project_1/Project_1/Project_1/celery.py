@@ -15,5 +15,9 @@ app.conf.beat_schedule = {
     'ydx': {
         'task': 'ydx.tasks.ydx_save_to_base',
         'schedule': crontab(minute=[0, 15, 30, 45])
+    },
+    'gism': {
+        'task': 'gism.tasks.gism_save_to_base',
+        'schedule': crontab(minute=[0, 15, 30, 45])
     }
 }

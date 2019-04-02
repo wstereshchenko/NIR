@@ -5,8 +5,8 @@ services:
     container_name: 'DB_Project_1'
     restart: on-failure
     image: postgres:11
-#    volumes:
-#      - ./postgres/pgdata/:/home/project/postgresql/data/
+    volumes:
+      - ./postgres/pgdata/:/home/project/postgresql/data/
     env_file:
       - ./main.properties
   rabbitmq:

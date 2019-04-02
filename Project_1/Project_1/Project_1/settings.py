@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'api',
     'ydx',
+    'gism',
     'owm'
 ]
 
@@ -158,4 +159,8 @@ OWP_id_city = '484907'
 OWP_units = 'metric'
 
 YDX_city = 'taganrog'
+
+GISM_city = 'Taganrog'
+GISM_city_id = '5106'
+
 conv_pressure = 0.750063755419211
