@@ -158,3 +158,4 @@ OWP_id_city = '484907'
 OWP_units = 'metric'
 
 YDX_city = 'taganrog'
+conv_pressure = 0.750063755419211

@@ -2,7 +2,10 @@ from celery import shared_task
 import requests
 
 from Project_1.settings import *
-from owm.models import OwmWeather
+from .models import OwmWeather
+
+
+id_city_in_service = 1
 
 
 @shared_task
@@ -10,6 +13,7 @@ def owm_save_to_base():
     response = requests.get('https://api.openweathermap.org/data/2.5/weather?id={}&mode=json&units={}&appid={}'
                             .format(OWP_id_city, OWP_units, OWP_appid)).json()
     ans = OwmWeather(id_city=response['id'],
+                     id_city_in_service=id_city_in_service,
                      name_city=response['name'],
                      lon=response['coord']['lon'],
                      lat=response['coord']['lat'],

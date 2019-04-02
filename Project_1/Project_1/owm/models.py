@@ -3,6 +3,7 @@ from django.db import models
 
 class OwmWeather(models.Model):
     id_city = models.IntegerField()
+    id_city_in_service = models.IntegerField()
     name_city = models.CharField(max_length=50)
     lon = models.FloatField()
     lat = models.FloatField()
