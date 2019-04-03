@@ -19,6 +19,7 @@ def gism_save_to_base():
 
     temp = str(soup.find(class_='nowvalue__text_l').contents[0])[-8]
     temp = temp + str(soup.find(class_='nowvalue__text_l').contents[1]).replace(' ', '')
+    temp = temp.replace(',', '.')
     if temp[0] == '+':
         temp = float(temp[1:])
     else:
