@@ -163,4 +163,6 @@ YDX_city = 'taganrog'
 GISM_city = 'Taganrog'
 GISM_city_id = '5106'
 
+id_city = '1'
+
 conv_pressure = 0.750063755419211
